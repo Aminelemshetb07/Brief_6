@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+    crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet"> 
+
+    <title>Gestion Des Utilisateurs</title>
+</head>
+<body>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        i{
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 5px;
+        }
+        h1{
+            font-size: 4vw;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        h2{
+            font-size: 1.4vw;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        #tbody{
+            text-align: center;
+        }
+    </style>
+
+
+<section class="container col-8 mt-1"> 
+        <h1>CRUD</h1>
+        <h2>Creat Read Update Delete</h2>
+
+    <form class="container mt-3" action="">
+
+        <div class="mb-3">
+            <label for="text" class="form-label" >Nom</label>
+            <input type="text"  name="name" class="form-control" id="name"    maxlength="30" >
+        </div>
+    
+        <div class="mb-3">
+            <label for="marque" class="form-label">Marque</label>
+            <input type="text"  name="marque" class="form-control" id="marque" >
+        </div>
+    
+    
+    
+        <div class="mb-3 ">
+            <label for="price" class="form-label">Prix</label>
+            <input type="number"  name="price" class="form-control" id="price" >
+        </div>
+    
+        <div class="mb-3">
+            <label for="dateProduct" class="form-label">Date Product</label>
+            <input type="date"  name="dateProduct" class="form-control" id="dateProduct" >
+        </div>
+    
+    
+        <label for="type" class="mb-2">Type</label>
+            <select name="type" id="type" class="form-select" >
+                <option value="hygiène et toilette">
+                    hygiène et toilette
+                </option>
+                <option value="soins esthétiques">
+                    soins esthétiques
+                </option>
+                <option value="produits solaires">
+                    produits solaires
+                </option>
+                <option value="beauté des mains et des pieds">
+                    beauté des mains et des pieds
+                </option>
+                <option value="produits de maquillage">produits de maquillage</option>
+                <option value="entretien capillaires">
+                    entretien capillaires
+                </option>
+                <option value="parfums">parfums</option>
+            </select>
+    
+    
+
+    <div class="mt-4 row">
+        
+        <label class="mb-3 col-md-1">Promotion</label><br>
+
+        <div id="" class="col-md-4 d-flex ms-md-4">
+
+                <input value="oui" class="form-check-input" type="radio" name="promotion" id="flexRadioDefault1" checked>
+                <label class="form-check-label ms-1" for="flexRadioDefault1" >Yes</label>
+
+            <div class="ms-3">
+                <input  value="no" class="form-check-input" type="radio" name="promotion" id="flexRadioDefault2" >
+                <label class="form-check-label ms-1" for="flexRadioDefault2">No</label>
+            </div>
+
+        </div>
+
+    </div>
+    
+        <button type="submit" id="ajouter" class="btn btn-primary mt-2"> Ajouter</button>
+
+        <button type="submit" id="update"  title="" class="btn btn-primary mt-2">Save</button>
+        
+    </form>
+
+
+<div class="table-responsive container ">
+
+    <table class="table mt-4 caption-top" id="table">
+        <caption>List of Productes</caption>
+        <thead class="table-dark " >
+            <tr style="text-align: center;">
+                <th >name</th>
+                <th >marque</th>
+                <th >price</th>
+                <th >date</th>
+                <th >type</th>
+                <th >promotion</th>
+                <th >actions</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <!-- <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td> 
+                    <i class="bi bi-pencil-square" style="color: green;"></i>
+                    <i class="bi bi-trash" style="color: red;"></i> 
+                </td>
+            </tr>
+            <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+                <td>
+                    <i class="bi bi-pencil-square" style="color: green;" ><i> 
+                    <i class="bi bi-trash" style="color: red;"></i> 
+                </td>
+            </tr> -->
+        </tbody>
+</div>
+
+    </table>
+
+
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"
+    ></script>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"
+    ></script>
+
+    
+</body>
+</html>
