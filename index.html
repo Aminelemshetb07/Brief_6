@@ -51,30 +51,33 @@
         <h1>CRUD</h1>
         <h2>Creat Read Update Delete</h2>
 
-    <form class="container mt-3" action="">
+    <form class="container mt-3" action="" id="myForm">
 
         <div class="mb-3">
             <label for="text" class="form-label" >Nom</label>
             <input type="text"  name="name" class="form-control" id="name"    maxlength="30" >
+            <span id="error"></span>
         </div>
     
         <div class="mb-3">
             <label for="marque" class="form-label">Marque</label>
-            <input type="text"  name="marque" class="form-control" id="marque" >
+            <input type="text"  name="marque" class="form-control" id="marque"  maxlength="15">
+            <span id="error2"></span>
         </div>
     
     
     
         <div class="mb-3 ">
             <label for="price" class="form-label">Prix</label>
-            <input type="number"  name="price" class="form-control" id="price" >
+            <input type="number"  name="price" class="form-control" id="price">
+            <span id="error3"></span>
         </div>
     
         <div class="mb-3">
             <label for="dateProduct" class="form-label">Date Product</label>
-            <input type="date"  name="dateProduct" class="form-control" id="dateProduct" >
+            <input type="date"  name="dateProduct" value="2022-11-16" class="form-control" id="dateProduct">
+            <span id="error4"></span>
         </div>
-    
     
         <label for="type" class="mb-2">Type</label>
             <select name="type" id="type" class="form-select" >
@@ -114,7 +117,6 @@
             </div>
 
         </div>
-
     </div>
     
         <button type="submit" id="ajouter" class="btn btn-primary mt-2"> Ajouter</button>
