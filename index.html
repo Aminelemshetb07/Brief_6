@@ -130,7 +130,8 @@
         </div>
         <label for="type" class="mb-2">Type</label>
             <select name="type" id="type" class="form-select" >
-                <option value="hygiène et toilette" selected>
+                <option selected disabled> please select a options</option>
+                <option value="hygiène et toilette" >
                     hygiène et toilette
                 </option>
                 <option value="soins esthétiques">
@@ -148,13 +149,15 @@
                 </option>
                 <option value="parfums">parfums</option>
             </select>
+            <span id="errorType"></span>
+
     <div class="mt-4 row">
         <label class="mb-3 col-md-1">Promotion</label><br>
         <div id="" class="col-md-4 d-flex ms-md-4">
-                <input value="oui" class="form-check-input" type="radio" name="promotion" id="flexRadioDefault1" checked>
+                <input value="oui" class="form-check-input" type="radio" name="promotion" id="flexRadioDefault1" >
                 <label class="form-check-label ms-1" for="flexRadioDefault1" >Yes</label>
             <div class="ms-3">
-                <input  value="no" class="form-check-input" type="radio" name="promotion" id="flexRadioDefault2" >
+                <input  value="no" class="form-check-input" type="radio" name="promotion" id="flexRadioDefault2" checked>
                 <label class="form-check-label ms-1" for="flexRadioDefault2">No</label>
             </div>
         </div>
