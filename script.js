@@ -2,15 +2,13 @@
 let theday =  new Date().getFullYear()  + "-" + Number(new Date().getMonth() + 1) +  "-" + new Date().getDate() ;
 dateProduct.value = theday
 dateProduct.max = theday
-
 // <============ validation des inputs ================> 
 // onblur 'Name'
-document.getElementById('name').oninput = function(){
+let checkName = function(){
     let myInput = document.getElementById('name');
-    let myRegex = /^[a-zA-Z]{3,15}$/g;
+    let myRegex = /^[a-zA-Z]{3,30}$/;
     let myError = document.getElementById('error');
     if(myInput.value.trim() == ""){
-        // ajouter.setAttribute("disabled" , "true");
         nom.setAttribute("class" , "is-invalid form-control ");
         myError.innerHTML = "Entre votre Nom!.";
         myError.style.color = 'red';
@@ -19,12 +17,15 @@ document.getElementById('name').oninput = function(){
         myError.innerHTML = "please entrer your name correct!";
         myError.style.color = 'red';
     } else {
-        nom.setAttribute("class" , "is-valid form-control ");   
+        nom.setAttribute("class" , "is-valid form-control");   
         myError.innerHTML = "";
     }
 }
-// onblur 'Marque'
-document.getElementById('marque').oninput = function(){
+document.getElementById('name').addEventListener("keyup", function(e){
+    checkName()
+})
+// valide 'Marque'
+let checkMarque = function(){
     let myInput = document.getElementById('marque');
     // let myRegex = /^[a-zA-Z]{3,15}$/;
     let myError = document.getElementById('error2');
@@ -37,8 +38,11 @@ document.getElementById('marque').oninput = function(){
         myError.innerHTML = "";
     }
 }
-// onblur 'Price'
-document.getElementById('price').oninput = function(){
+document.getElementById('marque').addEventListener("keyup", function(e){
+    checkMarque()
+})
+// valide 'Price'
+let checkPrice = function(){
     let myInput = document.getElementById('price');
     // let myRegex = /^[a-zA-Z]{3,15}$/;
     let myError = document.getElementById('error3');
@@ -51,35 +55,9 @@ document.getElementById('price').oninput = function(){
         myError.innerHTML = "";
     }
 }
-
-// let myForm = document.getElementById('myForm');
-
-// myForm.addEventListener('submit', function(){
-//     console.log("hello");
-// })
-
-
-
-// document.getElementById('ajouter') = function(){
-//     let myInput = document.getElementById('name');
-//     if(myInput.value.trim() == ""){
-//         console.log("heloooooooooooo")
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document.getElementById('price').addEventListener("keyup", function(e){
+    checkPrice()
+})
 // <============ CRUD ================> 
 let nom = document.getElementById('name');
 let marque = document.getElementById('marque');
@@ -89,23 +67,6 @@ let type = document.getElementById('type');
 let ajouter = document.getElementById('ajouter');
 let update = document.getElementById('update');
 let promo = document.querySelector("form").elements.namedItem("promotion");
-
-
-
-    // if(marque.value.trim() == ""){
-    //     ajouter.setAttribute("disabled" , "true");
-    // }else
-    // ajouter.setAttribute("disabled" , "false")
-    // if(price.value.trim() == ""){
-    //     ajouter.setAttribute("disabled" , "true");
-    // }else
-    // ajouter.setAttribute("disabled" , "false")
-
-    
-
-
-
-
 // save data
 let data;
 if(localStorage.product != null){
@@ -118,8 +79,6 @@ update.style.display='none'
 // add product.
 ajouter.onclick = function(e){
     e.preventDefault();
-
-
     let newPro = {
         name: nom.value,
         marque: marque.value,
@@ -138,9 +97,10 @@ function claerData(){
     nom.value = '';
     marque.value = '';
     price.value = '';
-    date.value = '';
-    type.value = '';
     promo.value = '';
+    nom.setAttribute("class" , "form-control");   
+    marque.setAttribute("class" , "form-control");  
+    price.setAttribute("class" , "form-control");  
 }
 // create table
 function showData(){
@@ -165,9 +125,14 @@ function showData(){
 showData();
 // function delete.
 function deleteData(i){
+    md.style.display = "block" 
+    realDelete.setAttribute("onclick", ` deleteRealData(${i})`)
+}
+function deleteRealData(i){
     data.splice(i,1);
     localStorage.product = JSON.stringify(data);
-    showData()
+    showData();
+    md.style.display = "none" ;
 }
 // function update.
 function updateData(i){
@@ -194,7 +159,6 @@ update.onclick = function(e){
     data[i].type = type.value;
     data[i].promo = promo.value;
     // up.push(update.title);
-    data.push();
     localStorage.setItem('product', JSON.stringify(data));
     nom.value = '';
     marque.value = '';
@@ -202,8 +166,8 @@ update.onclick = function(e){
     date.value = '';
     type.value = '';
     promo.value = '';
+    nom.setAttribute("class" , "form-control");   
+    marque.setAttribute("class" , "form-control");  
+    price.setAttribute("class" , "form-control");  
 showData();
 }
-
-
-
