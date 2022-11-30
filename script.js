@@ -138,7 +138,7 @@ ajouter.onclick = function(e){
         errorType.innerHTML = "Entre votre Type";
         errorType.style.color = 'red';
     }
-    if(checkName() == true && checkMarque() == true && checkPrice() == true ){
+    if(checkName() == true && checkMarque() == true && checkPrice() == true && checkType() == true ){
         data.push(newPro)
         localStorage.setItem('product', JSON.stringify(data));
         claerData();
