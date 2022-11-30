@@ -99,6 +99,12 @@
             text-align: center;
             letter-spacing: 2px;
         }
+        /* #errors{
+            background-color: rgb(236, 117, 117);
+            width: 50%; 
+            text-align: center;
+            color: red;
+        } */
         #tbody{
             text-align: center;
             background-color: #fff;
@@ -108,9 +114,10 @@
         <h1>CRUD</h1>
         <h2>Creat Read Update Delete</h2>
     <form class="container mt-3" action="" id="myForm">
+        <!-- <p id="errors"></p> -->
         <div class="mb-3">
             <label for="text" class="form-label" >Nom</label>
-            <input type="text"  name="name" class="form-control" id="name"     >
+            <input type="text"  name="name" class="form-control" id="name">
             <span id="error"></span>
         </div>
         <div class="mb-3">
@@ -130,7 +137,7 @@
         </div>
         <label for="type" class="mb-2">Type</label>
             <select name="type" id="type" class="form-select" >
-                <option selected disabled> please select a options</option>
+                <option selected disabled value="" > please select a options</option>
                 <option value="hygiène et toilette" >
                     hygiène et toilette
                 </option>
@@ -181,30 +188,6 @@
             </tr>
         </thead>
         <tbody id="tbody">
-            <!-- <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td> 
-                    <i class="bi bi-pencil-square" style="color: green;"></i>
-                    <i class="bi bi-trash" style="color: red;"></i> 
-                </td>
-            </tr>
-            <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>
-                    <i class="bi bi-pencil-square" style="color: green;" ><i> 
-                    <i class="bi bi-trash" style="color: red;"></i> 
-                </td>
-            </tr> -->
         </tbody>
     </div>
     </table>
