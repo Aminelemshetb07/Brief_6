@@ -6,7 +6,7 @@ dateProduct.max = theday
 // onblur 'Name'
 let checkName = function(){
     let myInput = document.getElementById('name');
-    let myRegex = /^[a-zA-Z]{3,30}$/;
+    let myRegex = /^[a-zA-Z-\s]{3,30}$/;
     let myError = document.getElementById('error');
     if(myInput.value.trim() == ""){
         nom.setAttribute("class" , "is-invalid form-control ");
@@ -24,13 +24,13 @@ let checkName = function(){
         return true;
     }
 }
-document.getElementById('name').addEventListener("keyup", function(e){
+document.getElementById('name').addEventListener("blur", function(e){
     checkName()
 })
 // valide 'Marque'
 let checkMarque = function(){
     let myInput = document.getElementById('marque');
-    let myRegex = /^[a-zA-Z]{3,30}$/;
+    let myRegex = /^[a-zA-Z-\s]{3,30}$/;
     let myError = document.getElementById('error2');
     if(myInput.value.trim() == ""){
         marque.setAttribute("class" , "is-invalid form-control "); 
@@ -48,31 +48,12 @@ let checkMarque = function(){
         return true;
     }
 }
-document.getElementById('marque').addEventListener("keyup", function(e){
+document.getElementById('marque').addEventListener("blur", function(e){
     checkMarque()
 })
-
-let checkType = function(){
-    let myInput = document.getElementById('type');
-    let myError = document.getElementById('errorType');
-    if(myInput.value.trim() == ""){
-        type.setAttribute("class" , "is-invalid form-control "); 
-        myError.innerHTML = "Entre votre brand!.";
-        myError.style.color = 'red';
-        return false;
-    }else{
-        marque.setAttribute("class" , "is-valid form-control ");  
-        myError.innerHTML = "";
-        return true;
-    }
-}
-document.getElementById('marque').addEventListener("keyup", function(e){
-    checkMarque()
-})
-// valide 'Price'
+// valide price
 let checkPrice = function(){
     let myInput = document.getElementById('price');
-    // let myRegex = /^[a-zA-Z]{3,15}$/;
     let myError = document.getElementById('error3');
     if(myInput.value.trim() == ""){
         price.setAttribute("class" , "is-invalid form-control "); 
@@ -85,8 +66,26 @@ let checkPrice = function(){
         return true;
     }
 }
-document.getElementById('price').addEventListener("keyup", function(e){
+document.getElementById('price').addEventListener("blur", function(e){
     checkPrice()
+})
+// valide type
+let checkType = function(){
+    let myInput = document.getElementById('type');
+    let myError = document.getElementById('errorType');
+    if(myInput.value == ""){
+        type.setAttribute("class" , "is-invalid form-control "); 
+        myError.innerHTML = "Entre votre Type";
+        myError.style.color = 'red';
+        return false;
+    }else{
+        type.setAttribute("class" , "is-valid form-control ");  
+        myError.innerHTML = "";
+        return true;
+    }
+}
+document.getElementById('type').addEventListener("change", function(e){
+    checkType()
 })
 // <============ CRUD ================> 
 let nom = document.getElementById('name');
@@ -109,7 +108,10 @@ update.style.display='none'
 // add product.
 ajouter.onclick = function(e){
     e.preventDefault();
-    
+    let errorName = document.getElementById('error')
+    let errormarque = document.getElementById('error2');
+    let errorPrice = document.getElementById('error3');
+    let errorType = document.getElementById('errorType');
     let newPro = {
         name: nom.value,
         marque: marque.value,
@@ -118,22 +120,25 @@ ajouter.onclick = function(e){
         type: type.value,
         promo: promo.value
     }
-    if(checkName() == false || checkMarque() == false || checkPrice() == false ){
-        let myError = document.getElementById('error2');
-        let myError2 = document.getElementById('error3');
-        let myError3 = document.getElementById('errorType');
-
+    // function validé les inputs
+    if(checkName() == false ){
         marque.setAttribute("class" , "is-invalid form-control ");  
-        myError.innerHTML = "Entre votre marque";
-        myError.style.color = 'red';
+        errorName.innerHTML = "Entre votre nom";
+        errorName.style.color = 'red';
+    } if(checkMarque() == false ){
         price.setAttribute("class" , "is-invalid form-control ");  
-        myError2.innerHTML = "Entre votre marque";
-        myError2.style.color = 'red';
-        type.setAttribute("class" , "is-invalid form-control ");  
-        myError3.innerHTML = "Entre votre Type";
-        myError3.style.color = 'red';
+        errormarque.innerHTML = "Entre votre Marque";
+        errormarque.style.color = 'red';
+    } if( checkPrice() == false ){
+        price.setAttribute("class" , "is-invalid form-control ");  
+        errorPrice.innerHTML = "Entre votre price";
+        errorPrice.style.color = 'red';
+    } if( checkType() == false ){
+        type.setAttribute("class" , "is-invalid form-control "); 
+        errorType.innerHTML = "Entre votre Type";
+        errorType.style.color = 'red';
     }
-    else{
+    if(checkName() == true && checkMarque() == true && checkPrice() == true ){
         data.push(newPro)
         localStorage.setItem('product', JSON.stringify(data));
         claerData();
@@ -145,11 +150,12 @@ function claerData(){
     nom.value = '';
     marque.value = '';
     price.value = '';
-    type.value = '';
     promo.value = '';
+    type.value = '';
     nom.setAttribute("class" , "form-control");   
     marque.setAttribute("class" , "form-control");  
     price.setAttribute("class" , "form-control");  
+    type.setAttribute("class" , " form-control ");  
 }
 // create table
 function showData(){
@@ -180,8 +186,8 @@ function deleteData(i){
 function deleteRealData(i){
     data.splice(i,1);
     localStorage.product = JSON.stringify(data);
-    showData();
     md.style.display = "none" ;
+    showData();
 }
 // function update.
 function updateData(i){
