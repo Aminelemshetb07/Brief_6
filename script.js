@@ -1,6 +1,6 @@
 // new date 
 let theday =  new Date().getFullYear()  + "-" + Number(new Date().getMonth() + 1) +  "-" + new Date().getDate() ;
-dateProduct.value = theday
+dateProduct.value == theday
 dateProduct.max = theday
 // <============ validation des inputs ================> 
 // onblur 'Name'
